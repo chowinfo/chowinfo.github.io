@@ -14,16 +14,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check for token
+        run: |
+          if ! [[ -z "${{ secrets.GH_TOKEN }}" ]]; then
+            echo ::set-output has_token=true
+          else
+            echo ::set-output has_token=false
+          fi
+
       - name: Checkout
+        if: github.event_name == 'push' && steps.setup.outputs.has_token == 'true'
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # for posts's lastmod
+          token: ${{ secrets.GH_TOKEN || github.token }}
 
       - name: Setup Ruby
+        if: github.event_name == 'push' && steps.setup.outputs.has_token == 'true'
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7
           bundler-cache: true
 
       - name: Deploy
+        if: github.event_name == 'push' && steps.setup.outputs.has_token == 'true'
         run: bash tools/deploy.sh
