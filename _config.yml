@@ -23,7 +23,7 @@ timezone: Asia/Kolkata
 
 title: Chowdhury Informatics           # the main title
 
-tagline: A text-focused IT blog        # it will display as the sub-title
+tagline: A text-focused Finance Blog        # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   An one-stop solution for Income Tax and GST related issues.
@@ -73,7 +73,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode:   dark # [light|dark]
+theme_mode: # [light|dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
@@ -195,3 +195,18 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+    
+jekyll_compose:
+  default_front_matter:
+    drafts:
+      description:
+      image:
+      category:
+      tags:
+    posts:
+      description:
+      image:
+      category:
+      tags:
+      published: false
+      sitemap: false

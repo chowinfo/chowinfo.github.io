@@ -1,0 +1,30 @@
+--- 
+---
+
+/*
+  If the number of TAB files has changed, the following variable is required.
+  And it must be defined before `@import`.
+*/
+$tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
+
+@import "{{ site.theme }}";
+
+/* append your custom style below */
+
+// table wrapper element
+.table-wrapper {
+    overflow: visible;
+
+    >table {
+        table-layout: fixed;
+        // min-width: 100%;
+        overflow: visible;
+
+        tbody {
+            tr td, th {
+                white-space: normal;
+                overflow: visible;
+            }
+        }
+    }
+}
